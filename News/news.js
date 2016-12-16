@@ -16,18 +16,14 @@ this.description;
       this.description = this.headlines[0].description;
     })
 
-      // this.selectedNumber = 1;
-      // this.title = this.headlines[0].title;
      this.clickTitle = function(clicked) {
     this.title = clicked.title;
     this.image = clicked.urlToImage;
     this.description = clicked.description;
     this.url = clicked.url;
-
-      // console.log(clicked);
     }
 
-    // this.clickArticle = function(clicked) {
-    //     this.title = clicked.url;
-    // }
+    this.clickArticle = function(clicked) {
+        this.title = clicked.url;
+    }
   });
