@@ -30,10 +30,12 @@ this.showAdd = true;
         this.closeWindow= function(){
           localStorage.setItem('events', JSON.stringify(this.events));
           this.showAdd = true;
+          // this.applyEvent();
+
         }
         this.addEvent = function() {
 
-            this.applyEvent();
+            // this.applyEvent();
             this.showAdd =false;
         }
 
