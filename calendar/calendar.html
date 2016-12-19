@@ -12,7 +12,7 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
 
-    <script src="calendar.controller.js"></script>
+    <!-- <script src="calendar.controller.js"></script> -->
      <script src="eventFactory.js"></script>
      <link type="text/css" rel="stylesheet" href="css/style.css">
 
@@ -68,7 +68,6 @@
                           <th>Title</th>
                           <th>Starts at</th>
                           <th>Ends at</th>
-                          <th>Remove</th>
                       </tr>
                   </thead>
 
@@ -76,6 +75,9 @@
                       <tr ng-repeat="event in vm.events track by $index">
                           <td>
                               <input type="text" class="form-control" ng-model="event.title">
+                              <button class="btn btn-danger" ng-click="vm.deleteEntry($index)">
+                    Delete
+                  </button>
                           </td>
                           <td>
                               <p class="input-group" style="max-width: 250px">
@@ -107,11 +109,6 @@
                               </p>
                               <div uib-timepicker ng-model="event.endsAt" hour-step="1" minute-step="15" show-meridian="true">
                               </div>
-                          </td>
-                          <td>
-                              <button class="btn btn-danger" ng-click="vm.deleteEntry($index)">
-                    Delete
-                  </button>
                           </td>
                       </tr>
                   </tbody>
