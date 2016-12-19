@@ -1,7 +1,4 @@
- angular.module("coffee-time", ['ui.router'])
-
-
- //Controllers for coffee time app *********************
+ angular.module("coffee-time", ['ui.router','mwl.calendar' ])
 
  .controller("HelloController", function ($scope) {
  	$scope.helloTo = {};
@@ -9,6 +6,7 @@
 
  	console.log("im working");
  })
+
 
  .controller('QConvertController', function ($http, $log) {
  		this.currencyObject = {
@@ -156,8 +154,23 @@
  		}
  	}
  })
+        }
 
+        this.applyEvent = function() {
+            var newEvent = {
+                title: 'newTitle',
+                startsAt: new Date(2016, 11, 15, 1),
+                endsAt: new Date(2016, 11, 16, 15),
+                color: calendarConfig.colorTypes.info
+            }
 
+            this.events[this.events.length] = newEvent;
+            console.log('- this.events-->', this.events);
+            localStorage.setItem('events', JSON.stringify(this.events));
+
+            this.loadData();
+        }
+    })
 
 
  .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
