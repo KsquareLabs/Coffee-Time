@@ -1,9 +1,23 @@
-.search-query{
-  margin-top: 10px;
-}
+
 .weather{
   color: white;
 }
   body::-webkit-scrollbar {
     display: none;
+}
+
+@media (max-width: 800px) {
+  .weather{
+    display: none;
+  }
+  #text{
+    word-wrap: break-word;
+    font-size: 15px;
+  }
+
+  body{
+background-color: red;
+  }
+
+
 }

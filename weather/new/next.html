@@ -13,9 +13,9 @@
 
 </head>
 
-<body style=" width: 60%; margin-top: 200px; margin: 0 auto;height: 600px; overflow:scroll;" ng-style="weatherBackground" class="text-center" ng-app="weatherApp" ng-controller="weatherCtrl">
+<body style="width: 60%; margin-top: 200px; margin-left: 300px; height: 300px; overflow:scroll;" ng-style="weatherBackground" class="text-center" ng-app="weatherApp" ng-controller="weatherCtrl">
     <div class="btn" style=" width: 97%; font-size: 20px; margin-bottom: 10px; background-color:rgba(0,0,0,0.5); color:white; height: 50px;">
-        Forecast
+        Forecast ({{date | date:'EEE M/d/yyyy'}})
         <a href="index.html" data-toggle="tooltip" data-placement="left" title="Go back!" <i style=" float: left; margin-top: 5px; color:white;" class="fa fa-arrow-left" aria-hidden="true"></i>
         </a>
       <a href="next3.html" data-toggle="tooltip" data-placement="left" title="Next!"   <i style=" float: right; margin-top: 5px; color:white;" class="fa fa-arrow-right" aria-hidden="true"></i>
@@ -27,6 +27,7 @@
 
             <div class="btn-group-vertical" style="margin-top: 0px; width:94%;">
                 <button  style=" height: 50px;" class="btn btn-primary"> City - {{joke}} </button>
+                <button style=" height: 50px" class="btn btn-primary "> Time - {{ date| date:'shortTime'}}</button>
                 <button style=" height: 50px;" class="btn btn-primary"> Wind Speed -  {{speed}} </button>
                 <button style=" height: 50px;" class="btn btn-primary" ng-init="tempVal=true" ng-show="tempVal" ng-click="tempVal=!tempVal"> {{fTemp}} (C/F)  </button>
                 <button style=" height: 50px;" class="btn btn-primary" ng-show="!tempVal" ng-click="tempVal=!tempVal"> {{cTemp}} (C/F)  </button>
