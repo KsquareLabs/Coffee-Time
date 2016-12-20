@@ -15,7 +15,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
         $http.get(openWeatherUrl).success(function(data) {
             vm.description = data.list[0].weather[0].description;
 
-            console.log(data.list[0].dt_txt);
+            console.log(data.list[0].dt);
             vm.date = (data.list[0].dt*1000);
             vm.joke = data.city.name;
             vm.speed = (2.237 * data.list[0].wind.speed).toFixed(1) + " mph";

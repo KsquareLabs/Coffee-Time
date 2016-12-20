@@ -21,6 +21,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
             vm.cTemp = (vm.temp - 273).toFixed(1) + "C ";
 
             vm.date = (data.dt * 1000);
+            console.log(data.dt);
 
             vm.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
 
