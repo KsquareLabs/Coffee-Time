@@ -4,13 +4,15 @@
 
 Create a Perosnal Assitance APP to track upcoming events, transaction, news and weather. All of these different activity is to be made as a Widget in a single page.
 
-Transaction App should allow to get all the currency rate(USD, MXN, EUR) depending on the date (using API). User should also be able to use CRUD to work with transaction. Also include currency conversion inputs in the page.
+Transaction App allows the user to get all the currency rate(USD, MXN, EUR) depending on the most current date (using API). Users are also be able to use CRUD to work with transaction. Also include currency conversion inputs in the page.
 
-Calendar App allows to create events. Use CRUD to work with event. Should receive notification when event is going to happen and show the whole calendar.(USE API)
+Calendar App allows to create events. Use CRUD to work with event. Displays events on the dashboard in list format and shows the whole calendar by day, week, month, and year.
 
-Trending New App should allows to get the trending news and allow th euser to predefine the topics that he/she is interested on.(USE API)
+Trending New App allows the user to get the trending news and allow them to get the top 10 trending news.(USE API)
 
 Technologies USED to create this APP.
+
+Google map shows the map in an Iframe in the area around Ksquare.
 
 1. Bootstrap JS
 2. Angular JS
