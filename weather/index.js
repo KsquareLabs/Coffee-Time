@@ -1,34 +1,36 @@
-var classApp = angular.module('weatherApp', []);
+var classApp = angular.module('coffee-time', []);
 
-classApp.controller('weatherCtrl', function($scope, $http) {
-    var vm = $scope;
-    vm.channelInfo = {
+classApp.controller('weatherCtrl', function($http) {
+
+    this.channelInfo = {
         heading: "Open Weather API Project",
         subheading: "Current weather",
     };
-
-    $http.get("http://ip-api.com/json").success(function(data) {
-        vm.lat = data.lat;
-        vm.lon = data.lon;
+    $http.get("http://ip-api.com/json").then((data)=> {
+        this.lat = data.data.lat;
+        this.lon = data.data.lon;
         var apikey = "5babe75ca0e2081709ac0eda2202d4f9";
-        var openWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + vm.lat + "&lon=" + vm.lon + "&appid=" + apikey;
-        $http.get(openWeatherUrl).success(function(data) {
-            vm.description = data.weather[0].description;
-            vm.speed = (2.237 * data.wind.speed).toFixed(1) + " mph";
-            vm.name = data.name;
-            vm.temp = data.main.temp;
-            vm.fTemp = (vm.temp * (9 / 5) - 459.67).toFixed(1) + "F ";
-            vm.cTemp = (vm.temp - 273).toFixed(1) + "C ";
 
-            vm.date = (data.dt * 1000);
-            console.log(data.dt);
+        var openWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + apikey;
 
-            vm.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+        $http.get(openWeatherUrl).success((data)=> {
+            this.description = data.weather[0].description;
+            this.speed = (2.237 * data.wind.speed).toFixed(1) + " mph";
+            this.name = data.name;
+            this.temp = data.main.temp;
+            this.fTemp = (this.temp * (9 / 5) - 459.67).toFixed(1) + "F ";
+            this.cTemp = (this.temp - 273).toFixed(1) + "C ";
 
-            switch (vm.description) {
+            this.date = (data.dt * 1000);
+
+            this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+
+
+
+            switch (this.description) {
                 case 'mist':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/mist.jpg')",
                             "background-size": "cover"
                         };
@@ -36,7 +38,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'clear sky':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/clearsky.jpeg')",
                             "background-size": "cover"
                         };
@@ -44,7 +46,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'rain':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/rain.jpeg')",
                             "background-size": "cover"
                         };
@@ -52,7 +54,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'broken clouds':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/broken.jpeg')",
                             "background-size": "cover"
                         };
@@ -60,7 +62,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'few clouds':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/few.jpeg')",
                             "background-size": "cover"
                         };
@@ -68,7 +70,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'scattered clouds':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/scattered.jpeg')",
                             "background-size": "cover"
                         };
@@ -76,7 +78,7 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'thunderstorm':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/thunderstorm.jpeg')",
                             "background-size": "cover"
                         };
@@ -84,20 +86,21 @@ classApp.controller('weatherCtrl', function($scope, $http) {
                     }
                 case 'shower rain':
                     {
-                        vm.weatherBackground = {
+                        this.weatherBackground = {
                             "background": "url('./image/shower.jpeg')",
                             "background-size": "cover"
                         };
                         break;
                     }
                 default:
-                    vm.weatherBackground = {
+                    this.weatherBackground = {
                         "background": "url('./image/default.jpeg')",
 
                         "background-size": "cover"
                     };
                     break;
             }
+
         });
     });
 });
