@@ -55,7 +55,11 @@ section {
 .row {
 	position: relative;
 	padding-top: 3px;
+	margin-left: 0;
+    margin-right: 0;
 }
+
+
 
 
 .col-sm-8,

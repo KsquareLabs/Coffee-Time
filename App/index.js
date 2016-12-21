@@ -218,30 +218,31 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 })
 
 .controller('weatherCtrl', function($http) {
-	console.log("weather is COOLLDDDD");
-    
+
     this.channelInfo = {
         heading: "Open Weather API Project",
         subheading: "Current weather",
     };
-		
-    $http.get("http://ip-api.com/json").then((data) => {
-        this.lat = data.lat;
-        this.lon = data.lon;
+    $http.get("http://ip-api.com/json").then((data)=> {
+        this.lat = data.data.lat;
+        this.lon = data.data.lon;
         var apikey = "5babe75ca0e2081709ac0eda2202d4f9";
+
         var openWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + apikey;
-        $http.get(openWeatherUrl).then((data) => {
+
+        $http.get(openWeatherUrl).success((data)=> {
             this.description = data.weather[0].description;
             this.speed = (2.237 * data.wind.speed).toFixed(1) + " mph";
-            otherwise.name = data.name;
+            this.name = data.name;
             this.temp = data.main.temp;
             this.fTemp = (this.temp * (9 / 5) - 459.67).toFixed(1) + "F ";
             this.cTemp = (this.temp - 273).toFixed(1) + "C ";
 
             this.date = (data.dt * 1000);
-            console.log(data.dt);
 
             this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+
+
 
             switch (this.description) {
                 case 'mist':
@@ -316,9 +317,11 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
                     };
                     break;
             }
+
         });
     });
 })
+
 
 
 .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
@@ -357,6 +360,7 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 				url: '/',
 				templateUrl: 'App/dashviews/weather.html',
 				controller: 'weatherCtrl',
+				controllerAs: 'vm'
 //			
 			},
 			'map': {
