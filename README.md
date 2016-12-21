@@ -10,7 +10,7 @@ Calendar App allows to create events. Use CRUD to work with event. Should receiv
 
 Trending New App should allows to get the trending news and allow th euser to predefine the topics that he/she is interested on.(USE API)
 
-Technologies USES to create this APP.
+Technologies USED to create this APP.
 
 1. Bootstrap JS
 2. Angular JS
