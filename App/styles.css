@@ -7,6 +7,52 @@ body {
 	margin: 20px;
 }
 
+		.row > div {
+			margin-bottom: 15px;
+		}
+		
+		.header {
+			min-height: 90px;
+		}
+		
+		.footer {
+			min-height: 60px;
+		}
+		
+		.header {
+			background-image: url('../images/texture.png');
+			
+		}
+		
+		.footer {
+			background: #2f2f2f;
+		}
+		
+		.sidebar {
+			min-height: 300px;
+			background: #dbdfe5;
+		}
+		
+		.content-top {
+			padding: 9px;
+			min-height: 160px;
+			background-image: url('../images/texture.png');
+			color: white;
+		}
+		
+		.content-bottom {
+			padding: 6px;
+			min-height: 125px;
+			background-color: rgba(0, 22, 44, 0.8);
+			margin-bottom: -15px;
+			color:white;
+		}
+		
+		.content-bottom.bg-alt {
+			width:100%;
+			height: 20em;
+		}
+
 .box1 {
 	z-index: 1000;
 	padding: 15px;
@@ -159,7 +205,18 @@ ds-widget-clock {
 	width: 100%;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+#clockSize1{
+		display: block;
+	}
+
+#clockSize2{
+		display: none;
+	}
+
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 475px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
 	.navbar {
 		background-image: url("../images/texture.png");
 		background-repeat: repeat;
@@ -167,23 +224,31 @@ ds-widget-clock {
 		display: flex;
 		align-content: center;
 	}
+	
+	
+	h2 {
+		font-size: 15px;
+	}
 	.logo {
 		width: 500px;
 	}
-	.col-sm-8,
-	.col-sm-4,
-	.col-sm-12,
-	.col-sm-6,
-	.col-sm-2{
-		padding: 0px;
-		border: 1px solid;
-		border-color: rgba(255, 255, 255, .4);
-		min-height: 75px;
-		background-color: rgba(0, 0, 0, .5);
-		color: white;
-		/*	overflow: hidden;*/
+	
+}
+
+
+@media (max-width: 991px) {
+			.content-bottom {
+				margin-bottom: 15px;
+			}
+	#clockSize1 {
+		display: none;
 	}
-}
-
-
-}
+	
+		#clockSize2 {
+		display:block;
+		padding-right: 4em;	
+	}
+			.content-bottom.bg-alt {
+				margin-bottom: -15px;
+			}
+		}

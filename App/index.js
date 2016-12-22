@@ -1,5 +1,5 @@
 
-angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar'])
+angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.clock'])
 
 //Controllers for coffee time app *********************
 
