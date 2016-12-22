@@ -1,10 +1,2 @@
 
-  <div ng-controller='weatherCtrl as vm'>
-      <div class="btn btn-info  btn-responsive eachData1"> City - {{vm.name | uppercase}}</div>
-      <div class="btn btn-info  btn-responsive eachData1"> Time - {{ vm.date| date:'shortTime'}}</div>
-      <div class="btn btn-info btn-responsive eachData1"> Wind Speed - {{vm.speed}} </div>
-      <div class="btn btn-info  btn-responsive eachData1" ng-init="tempVal=true" ng-show="tempVal" ng-click="tempVal=!tempVal"> {{vm.fTemp}} (C/F) </div>
-      <div class="btn btn-info active btn-responsive eachData1" ng-show="!tempVal" ng-click="tempVal=!tempVal"> {{vm.cTemp}} (C/F) </div>
-      <div class="btn btn-info btn-responsive eachData1"> Description - {{vm.description | uppercase}} <img ng-src="{{icon}}" /> </div>
-  </div>
 

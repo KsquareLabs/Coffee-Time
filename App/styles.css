@@ -1,5 +1,6 @@
 body {
 	background-image: url("../images/bg.jpg");
+	background-size: cover;
 }
 
 .container-fluid {
@@ -28,6 +29,7 @@ body {
 }
 
 .img-circle {
+	padding: 8px;
 	width: 130px;
 }
 
@@ -42,6 +44,7 @@ body {
 
 .logo {
 	padding-top: 5px;
+	margin-left: -20px;
 	width: 160px;
 }
 
@@ -53,14 +56,20 @@ section {
 }
 
 .row {
-	position: relative;
-	padding-top: 3px;
-	margin-left: 0;
-    margin-right: 0;
+	
+	margin-right: -15px;
+  margin-left: -15px;
 }
 
+.col-md-6 {
+	padding-left: 15px;
+	padding-right: 15px;
+}
 
-
+.col-md-7 {
+	border-top-left-radius: 70px;
+	border-bottom-left-radius: 70px;
+}
 
 .col-sm-8,
 .col-sm-4,
@@ -69,6 +78,7 @@ section {
 	.col-sm-2{
 	padding: 0px;
 	box-sizing: border-box;
+		
 /*	margin-left: 15px;	*/
 /*	border: 1px solid;*/
 /*	height: 37em;*/
