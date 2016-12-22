@@ -1,95 +1,89 @@
-#weather{
-  float: left;
-  width: 97%;
-  font-size: 20px;
-  margin-bottom: 10px;
-  color:white;
-  height: 50px;
-}
-#weather a{
-  float: right;
-}
 body::-webkit-scrollbar {
     display: none;
 }
-body{
-  width: 60%;
-  margin: 0 auto;
-  display: inline-block;
-  height:700px;
 
-}
-
-.eachData{
-  color: white;
-  background: rgba(0,0,0,.5);
-  text-align: center;
-  height: 50px;
-  margin-top: 5px;
-
-  /*margin-bottom: 5px;*/
-}
-.eachData1{
-  color: white;
-  background: rgba(0,0,0,.5);
-  text-align: center;
-  height: 50px;
-  margin-bottom: 5px;
+body {
+    width: 60%;
+    margin: 0 auto;
+    display: inline-block;
+    height: 700px;
+    background-image: url('./image/cartoon.jpg');
+    background-size: cover;
 }
 
-.weatherParent{
-  width: 100%;
-  text-align: center;
-}
-#text{
-  text-align: center;
-margin-right: 15px;
+.eachData {
+    color: white;
+    background: rgba(0, 0, 0, .5);
+    text-align: center;
+    height: 50px;
+    margin-top: 5px;
+    /*margin-bottom: 5px;*/
 }
 
-#ro{
-  /*width: 100%;*/
-  text-align: center;
+.eachData1 {
+    color: black;
+    text-align: center;
+    height: 50px;
+    margin-bottom: 5px;
+    font-size: 1.1em;
 }
-#button{
-  margin-top: 10px;
-}
-#nav{
-  background-color: rgba(0,0,0,0.5);
-  width: 50%;
-  margin-left: 60%;
-  margin-top: 30%;
 
+.weatherParent {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
 }
+
+#text {
+    text-align: center;
+    margin-right: 15px;
+    font-size: 1.8em;
+  
+}
+
+#ro {
+    /*width: 100%;*/
+    text-align: center;
+}
+
+#button {
+    color: black;
+}
+
+#nav {
+    /*background-color: rgba(0,0,0,0.5);*/
+    border-radius: 15px;
+    color: black;
+    width: 100%;
+    height: auto;
+    margin-left: 35%;
+    margin-top: 10%;
+}
+
 #nav a, #nav i, #nav p {
-  color: white;
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+    font-style: cursive;
 }
+
 @media (max-width: 800px) {
     #weather i {
         display: none;
     }
-    #ro{
-      width: 105%;
-      margin-top: 20%;
-    margin-left:0;
+    #button {
+        margin-left: 5px;
+        margin-top: 20px;
     }
-    #nav{
-      width: 150%;
-      margin-left:0px;
-
+    #nav {
+        width: 150%;
+        margin-left: 20px;
     }
-
-  #body {
-
-        background-image: none
+    .eachData1 {
+        color: black;
+        font-size: 0.9em;
     }
-    .weatherParent{
-      width: 80%;
-margin-left: 50px;
+    #body {
+        background-color: lightpink;
     }
-    .pull-left{
-      display: none
-    }
-
-
-
 }
