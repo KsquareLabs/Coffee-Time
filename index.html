@@ -246,7 +246,11 @@
 
 	<!--****Transaction Modal Start*******-->
 	<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height:68%;">
-		<div class="container-fluid">
+		<div class="modal-header">
+			<button  type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color:black;">×</span><span class="sr-only">Close</span></button>
+			<h2 class="modal-title" id="lineModalLabel">Calendar App</h2>
+		</div>
+		<div class="modal-body">
 			<div class="row">
 				<div class="col-sm-9" ng-controller="TableController as vm">
 					<div class="btn-group" role="group" aria-label="...">
@@ -362,9 +366,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		</div>
+		
 	</div>
 	<!--****Transaction Modal End-->
 
