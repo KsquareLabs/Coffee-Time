@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" rel="text/javascript"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+
+<body>
+<div ng-app="coffee-time" >
+<div ng-controller='weatherCtrl as vm'>
+  <nav class="navbar navbar-brand " id="nav"  ng-style="vm.weatherBackground">
+    <a href="index.html"  <i style=" float: left;  color:white;" class="fa fa-arrow-hom" aria-hidden="true"></i>
+    </a>
+    <p id="text"> Today ({{vm.date | date:'EEE M/d/yyyy'}})
+     <a href="next.html" data-toggle="tooltip" data-placement="left" title="Next!"   <i style=" float: right;  color:white;" class="fa fa-arrow-right" aria-hidden="true"></i>
+     </a>
+</p>
+  <ul id="button" class="btn-group-vertical weatherParent" >
+      <li class="btn btn-info  btn-responsive eachData1"> City - {{vm.name | uppercase}}</li>
+      <li class="btn btn-info  btn-responsive eachData1"> Time - {{ vm.date| date:'shortTime'}}</li>
+      <li class="btn btn-info btn-responsive eachData1"> Wind Speed - {{vm.speed}} </li>
+      <li class="btn btn-info  btn-responsive eachData1" ng-init="tempVal=true" ng-show="tempVal" ng-click="tempVal=!tempVal"> {{vm.fTemp}} (C/F) </li>
+      <li class="btn btn-info active btn-responsive eachData1" ng-show="!tempVal" ng-click="tempVal=!tempVal"> {{vm.cTemp}} (C/F) </li>
+      <li class="btn btn-info btn-responsive eachData1"> Description - {{vm.description | uppercase}} <img ng-src="{{vm.icon}}" /> </li>
+  </ul>
+</div>
+</div>
+</nav>
+</body>
+</html>
