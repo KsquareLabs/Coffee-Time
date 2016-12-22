@@ -31,14 +31,14 @@ body {
 .weatherParent {
     width: 100%;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 #text {
     text-align: center;
     margin-right: 15px;
     font-size: 1.8em;
-  
+
 }
 
 #ro {
@@ -51,9 +51,9 @@ body {
 }
 
 #nav {
-    /*background-color: rgba(0,0,0,0.5);*/
+
     border-radius: 15px;
-    color: black;
+
     width: 100%;
     height: auto;
     margin-left: 35%;
@@ -78,12 +78,21 @@ body {
     #nav {
         width: 150%;
         margin-left: 20px;
+        margin-top: 150px;
     }
     .eachData1 {
         color: black;
         font-size: 0.9em;
     }
-    #body {
-        background-color: lightpink;
+    #text {
+        text-align: center;
+        font-size: 1.1em;
+        margin-top: 10px;
     }
+    body{
+background-image: none;
+/*background-color: lightgreen;*/
+
+    }
+
 }
