@@ -197,8 +197,18 @@ mwl-calendar {
 .modal {
 	margin: auto;
 	width: 80%;
-	height: 90%;
+	margin-top: 40px;
+	margin-bottom: 40px;
+/*	height: 90%;*/
 	background-color: white;
+}
+
+.modal-header {
+	background-image: url('../images/bg.jpg');
+	background-size:cover;
+	
+			color: white;
+	
 }
 
 ds-widget-clock {

@@ -141,8 +141,12 @@
 
 
 	<!--*****Calendar View*******-->
-	<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="height:68%;">
-		<div id="cal" class=" view3" ng-controller="calendarCtlr as vm">
+	<div class=" modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-header">
+			<button  type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color:black;">×</span><span class="sr-only">Close</span></button>
+			<h2 class="modal-title" id="lineModalLabel">Calendar App</h2>
+		</div>
+		<div  class="modal-body" ng-controller="calendarCtlr as vm">
 			<h2 class="text-center">{{vm.calendarTitle}}</h2>
 			<div class="box">
 				<div class="text-center">
@@ -235,12 +239,7 @@
 				</div>
 			</div>
 
-			<div class="modal-footer">
 
-
-				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.calClose()">Close</button>
-
-			</div>
 		</div>
 	</div>
 	<!--****Calendar Modal End-->
