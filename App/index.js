@@ -1,5 +1,5 @@
 
-angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.clock'])
+angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar'])
 
 //Controllers for coffee time app *********************
 
@@ -73,7 +73,7 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
      }
    }
    this.addRow = function(){
-		 
+
 		 console.log('---->',this.statement);
      var newStatement = {'transaction':this.transaction,'amount':this.amount, 'conversion': this.conversion};
      this.statement[this.statement.length]=newStatement;
@@ -117,19 +117,10 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
        localStorage.setItem('storedValues', JSON.stringify(this.statement));
    }
 	})
-
-
-
-
-
-
-
-
 .controller("HelloController", function ($scope) {
 	$scope.helloTo = {};
 	$scope.helloTo.title = "AngularJS";
 
-	console.log("im working");
 })
 
 
@@ -138,7 +129,6 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 
 	this.showAdd = true;
 	this.events;
-
 	this.loadData = function () {
 		var retrievedData = localStorage.getItem('events');
 		this.events = JSON.parse(retrievedData);
@@ -149,12 +139,11 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 		event[field] = !event[field];
 	};
 	this.loadData();
-	console.log(this.events);
-
 
 	this.deleteEntry = function (index) {
 
-		this.events.splice(index, 1)
+		this.events.splice(index, 1);
+
 		localStorage.setItem('events', JSON.stringify(this.events));
 
 	}
@@ -167,6 +156,9 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 		// this.applyEvent();
 
 	}
+	this.calClose = function() {
+		console.log(this.events);
+	}
 	this.addEvent = function () {
 
 		// this.applyEvent();
@@ -176,8 +168,8 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 	this.applyEvent = function () {
 		var newEvent = {
 			title: 'newTitle',
-			startsAt: new Date(2016, 11, 15, 1),
-			endsAt: new Date(2016, 11, 16, 15),
+			startsAt: new Date(),
+			endsAt: new Date(),
 			color: calendarConfig.colorTypes.info
 		}
 
@@ -216,6 +208,7 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 		this.title = clicked.url;
 	}
 })
+
 
 .controller('weatherCtrl', function($http) {
 
@@ -324,6 +317,7 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 
 
 
+
 .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
 	$urlRouterProvider.otherwise('/');
 
@@ -360,18 +354,20 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 				url: '/',
 				templateUrl: 'App/dashviews/weather.html',
 				controller: 'weatherCtrl',
+
 				controllerAs: 'vm'
 //			
+
 			},
 			'map': {
 				url: '/',
 				templateUrl: 'App/dashviews/map.html'
-			
+
 			}
 		}
 	})
 
 
- 
+
 
  }])
