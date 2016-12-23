@@ -20,8 +20,10 @@ classApp.controller('weatherCtrl', function($http) {
             this.temp = data.main.temp;
             this.fTemp = (this.temp * (9 / 5) - 459.67).toFixed(1) + "F ";
             this.cTemp = (this.temp - 273).toFixed(1) + "C ";
-
+            this.sunrise = (data.sys.sunrise*1000);
+            this.sunset = (data.sys.sunset*1000);
             this.date = (data.dt * 1000);
+            this.country=(data.sys.country);
 
             this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
 
@@ -94,11 +96,31 @@ classApp.controller('weatherCtrl', function($http) {
                     }
                 default:
                     this.weatherBackground = {
-                        "background": "url('./image/default.jpeg')",
+                        "background": "url('./image/default.png')",
 
                         "background-size": "cover"
                     };
                     break;
+            }
+            this.next = function(){
+              this.second=true;
+              this.home = true;
+            }
+            this.back = function(){
+              this.second=false;
+              this.home = false;
+            }
+            this.back1 = function(){
+              this.second=true;
+              this.third = false;
+            }
+            this.third1 = function(){
+              this.second=false;
+              this.third = true;
+            }
+            this.home1 = function(){
+              this.third=false;
+              this.home = false;
             }
 
         });
