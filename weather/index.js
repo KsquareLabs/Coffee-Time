@@ -96,7 +96,7 @@ classApp.controller('weatherCtrl', function($http) {
                     }
                 default:
                     this.weatherBackground = {
-                        "background": "url('./image/default.jpeg')",
+                        "background": "url('./image/default.png')",
 
                         "background-size": "cover"
                     };
