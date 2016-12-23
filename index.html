@@ -39,7 +39,7 @@
 
 </head>
 
-<body ng-app="coffee-time" ng-controller="HelloController">
+<body ng-app="coffee-time" ng-controller="HelloController as vm">
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container" style="width:100%; margin-left:20px; margin-right:50px;">
@@ -61,20 +61,22 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-xs-12">
+			<div class="col-md-12">
 				<div>
 					<div class="col-md-5">
 
 						<img src="images/user.jpg" class="img-responsive img-circle pull-left">
 						<h4>Sarah Chapman</h4>
-						<h2>"Good Afternoon Sarah"</h2>
+						<h2>{{vm.greeting}}</h2>
 					</div>
+					
+					
 
 					<div id="clockSize1" class="col-md-7 pull-right" style="background-color: rgba(0, 22, 44, 0.8); margin-right:-35px;">
 						<div class="row">
 							
 							<div  class="col-md-10">
-						<h2 style="color:white; width:65%;"><ds-widget-clock show-digital digital-format="'hh:mm a'" ></ds-widget-clock></h2>
+						<span><h2 style="color:white; width:65%;"><ds-widget-clock show-digital digital-format="'hh:mm a'" ></ds-widget-clock></h2></span>
 							
 							</div>
 							

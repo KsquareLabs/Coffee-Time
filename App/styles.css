@@ -253,13 +253,31 @@ ds-widget-clock {
 		font-size: 15px;
 	}
 	.logo {
-		width: 500px;
+		width: 350px;
 	}
+		.content-bottom {
+				margin-bottom: 15px;
+			}
+	#clockSize1 {
+		display: none;
+	}
+	
+		#clockSize2 {
+			position: absolute;
+			right:7px;
+			top:9px;
+		display:block;
+/*			float:right;*/
+		
+	}
+			.content-bottom.bg-alt {
+				margin-bottom: -15px;
+			}
 	
 }
 
 
-@media (max-width: 991px) {
+@media (max-width: 700px) {
 			.content-bottom {
 				margin-bottom: 15px;
 			}

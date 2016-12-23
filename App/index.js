@@ -1,36 +1,35 @@
-
 angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.clock'])
 
 //Controllers for coffee time app *********************
 
 .factory('CurrencyConvert', function ($http, $log) {
-		var httpGet = function (theUrl) {
-			var xmlHttp = null;
-			xmlHttp = new XMLHttpRequest();
-			xmlHttp.open("GET", theUrl, false);
-			xmlHttp.send(null);
-			return xmlHttp.responseText;
+	var httpGet = function (theUrl) {
+		var xmlHttp = null;
+		xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET", theUrl, false);
+		xmlHttp.send(null);
+		return xmlHttp.responseText;
+	}
+	return {
+		getExchangeRate: function (currency_from, currency_to, currency_input) {
+			var yql_base_url = "https://query.yahooapis.com/v1/public/yql";
+			var yql_query = 'select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20("' + currency_from + currency_to + '")';
+			var yql_query_url = yql_base_url + "?q=" + yql_query + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+			var http_response = httpGet(yql_query_url);
+			var http_response_json = JSON.parse(http_response);
+			return http_response_json.query.results.rate.Rate;
+		},
+		load: function () {
+			var k = document.getElementById('theTable');
+			var storedValue = JSON.parse(localStorage.getItem('storedValues'));
+			k = storedValue;
 		}
-		return {
-			getExchangeRate: function (currency_from, currency_to, currency_input) {
-				var yql_base_url = "https://query.yahooapis.com/v1/public/yql";
-				var yql_query = 'select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20("' + currency_from + currency_to + '")';
-				var yql_query_url = yql_base_url + "?q=" + yql_query + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-				var http_response = httpGet(yql_query_url);
-				var http_response_json = JSON.parse(http_response);
-				return http_response_json.query.results.rate.Rate;
-			},
-			load: function () {
-				var k = document.getElementById('theTable');
-				var storedValue = JSON.parse(localStorage.getItem('storedValues'));
-				k = storedValue;
-			}
-		}
-	})
+	}
+})
 
 
 
-	.controller('QConvertController', function (CurrencyConvert) {
+.controller('QConvertController', function (CurrencyConvert) {
 		this.currencyObject = {
 			from: null,
 			to: null,
@@ -65,63 +64,77 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 	})
 
 
-	.controller('TableController', function (CurrencyConvert) {
-		 this.statement =[];
-   this.load = function(){
-     if(JSON.parse(localStorage.getItem('storedValues'))){
-           this.statement = JSON.parse(localStorage.getItem('storedValues'));
-     }
-   }
-   this.addRow = function(){
+.controller('TableController', function (CurrencyConvert) {
+		this.statement = [];
+		this.load = function () {
+			if (JSON.parse(localStorage.getItem('storedValues'))) {
+				this.statement = JSON.parse(localStorage.getItem('storedValues'));
+			}
+		}
+		this.addRow = function () {
 
-		 console.log('---->',this.statement);
-     var newStatement = {'transaction':this.transaction,'amount':this.amount, 'conversion': this.conversion};
-     this.statement[this.statement.length]=newStatement;
-     localStorage.setItem('storedValues', JSON.stringify(this.statement));
-     this.load();
-       this.transaction='';
-       this.amount='';
-     this.conversion='';
-       };
-   this.load();
-   this.convert=function(curr){
-     for(var i=0; i<this.statement.length; i++){
-       if(curr=='USD'){
-           this.statement[i].conversion= this.statement[i].amount + ' USD';
-         }
-       if(curr=='MXN'){
-         this.statement[i].conversion= ((this.statement[i].amount) * (CurrencyConvert.getExchangeRate('USD', 'MXN', 1))).toFixed(2) + ' MXN';
-         }
-       if(curr=='EUR'){
-         this.statement[i].conversion= ((this.statement[i].amount) * (CurrencyConvert.getExchangeRate('USD', 'EUR', 1))).toFixed(2) + ' EUR';
-         }
-     }
-   };
-   this.edit=function(index){
-     this.edit.transaction = this.statement[index].transaction;
-     this.edit.amount = this.statement[index].amount;
-     this.dialog = true;
-     this.cancel = function(){
-       this.dialog = false;
-     }
-     this.saveEdit =()=>{
-       this.statement[index].transaction =this.edit.transaction;
-       this.statement[index].amount =this.edit.amount;
-       localStorage.setItem('storedValues', JSON.stringify(this.statement));
+			console.log('---->', this.statement);
+			var newStatement = {
+				'transaction': this.transaction,
+				'amount': this.amount,
+				'conversion': this.conversion
+			};
+			this.statement[this.statement.length] = newStatement;
+			localStorage.setItem('storedValues', JSON.stringify(this.statement));
+			this.load();
+			this.transaction = '';
+			this.amount = '';
+			this.conversion = '';
+		};
+		this.load();
+		this.convert = function (curr) {
+			for (var i = 0; i < this.statement.length; i++) {
+				if (curr == 'USD') {
+					this.statement[i].conversion = this.statement[i].amount + ' USD';
+				}
+				if (curr == 'MXN') {
+					this.statement[i].conversion = ((this.statement[i].amount) * (CurrencyConvert.getExchangeRate('USD', 'MXN', 1))).toFixed(2) + ' MXN';
+				}
+				if (curr == 'EUR') {
+					this.statement[i].conversion = ((this.statement[i].amount) * (CurrencyConvert.getExchangeRate('USD', 'EUR', 1))).toFixed(2) + ' EUR';
+				}
+			}
+		};
+		this.edit = function (index) {
+			this.edit.transaction = this.statement[index].transaction;
+			this.edit.amount = this.statement[index].amount;
+			this.dialog = true;
+			this.cancel = function () {
+				this.dialog = false;
+			}
+			this.saveEdit = () => {
+				this.statement[index].transaction = this.edit.transaction;
+				this.statement[index].amount = this.edit.amount;
+				localStorage.setItem('storedValues', JSON.stringify(this.statement));
 
-       this.dialog = false;
-     }
-   };
-   this.delete=function(index){
-       this.statement.splice(index, 1);
-       localStorage.setItem('storedValues', JSON.stringify(this.statement));
-   }
+				this.dialog = false;
+			}
+		};
+		this.delete = function (index) {
+			this.statement.splice(index, 1);
+			localStorage.setItem('storedValues', JSON.stringify(this.statement));
+		}
 	})
-.controller("HelloController", function ($scope) {
-	$scope.helloTo = {};
-	$scope.helloTo.title = "AngularJS";
+	.controller("HelloController", function () {
+		this.helloTo = {};
+		this.helloTo.title = "AngularJS";
+		this.greeting = " "
+		var d = new Date();
+		var hours = d.getHours();
+	
+		if (hours > 12) {
+			this.greeting = '"Good Afternoon!"'
+		} else {
+			this.greeting = '"Good Morning!"'
+		}
 
-})
+
+	})
 
 
 
@@ -156,7 +169,7 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 		// this.applyEvent();
 
 	}
-	this.calClose = function() {
+	this.calClose = function () {
 		console.log(this.events);
 	}
 	this.addEvent = function () {
@@ -210,109 +223,109 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 })
 
 
-.controller('weatherCtrl', function($http) {
+.controller('weatherCtrl', function ($http) {
 
-    this.channelInfo = {
-        heading: "Open Weather API Project",
-        subheading: "Current weather",
-    };
-    $http.get("http://ip-api.com/json").then((data)=> {
-        this.lat = data.data.lat;
-        this.lon = data.data.lon;
-        var apikey = "5babe75ca0e2081709ac0eda2202d4f9";
+	this.channelInfo = {
+		heading: "Open Weather API Project",
+		subheading: "Current weather",
+	};
+	$http.get("http://ip-api.com/json").then((data) => {
+		this.lat = data.data.lat;
+		this.lon = data.data.lon;
+		var apikey = "5babe75ca0e2081709ac0eda2202d4f9";
 
-        var openWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + apikey;
+		var openWeatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + this.lat + "&lon=" + this.lon + "&appid=" + apikey;
 
-        $http.get(openWeatherUrl).success((data)=> {
-            this.description = data.weather[0].description;
-            this.speed = (2.237 * data.wind.speed).toFixed(1) + " mph";
-            this.name = data.name;
-            this.temp = data.main.temp;
-            this.fTemp = (this.temp * (9 / 5) - 459.67).toFixed(1) + "F ";
-            this.cTemp = (this.temp - 273).toFixed(1) + "C ";
+		$http.get(openWeatherUrl).success((data) => {
+			this.description = data.weather[0].description;
+			this.speed = (2.237 * data.wind.speed).toFixed(1) + " mph";
+			this.name = data.name;
+			this.temp = data.main.temp;
+			this.fTemp = (this.temp * (9 / 5) - 459.67).toFixed(1) + "F ";
+			this.cTemp = (this.temp - 273).toFixed(1) + "C ";
 
-            this.date = (data.dt * 1000);
+			this.date = (data.dt * 1000);
 
-            this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+			this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
 
 
 
-            switch (this.description) {
-                case 'mist':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/mist.jpg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'clear sky':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/clearsky.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'rain':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/rain.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'broken clouds':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/broken.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'few clouds':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/few.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'scattered clouds':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/scattered.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'thunderstorm':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/thunderstorm.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                case 'shower rain':
-                    {
-                        this.weatherBackground = {
-                            "background": "url('./image/shower.jpeg')",
-                            "background-size": "cover"
-                        };
-                        break;
-                    }
-                default:
-                    this.weatherBackground = {
-                        "background": "url('./image/default.jpeg')",
+			switch (this.description) {
+			case 'mist':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/mist.jpg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'clear sky':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/clearsky.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'rain':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/rain.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'broken clouds':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/broken.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'few clouds':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/few.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'scattered clouds':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/scattered.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'thunderstorm':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/thunderstorm.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			case 'shower rain':
+				{
+					this.weatherBackground = {
+						"background": "url('./image/shower.jpeg')",
+						"background-size": "cover"
+					};
+					break;
+				}
+			default:
+				this.weatherBackground = {
+					"background": "url('./image/default.jpeg')",
 
-                        "background-size": "cover"
-                    };
-                    break;
-            }
+					"background-size": "cover"
+				};
+				break;
+			}
 
-        });
-    });
+		});
+	});
 })
 
 
@@ -356,7 +369,7 @@ angular.module("coffee-time", ['ui.bootstrap', 'ui.router', 'mwl.calendar', 'ds.
 				controller: 'weatherCtrl',
 
 				controllerAs: 'vm'
-//			
+					//			
 
 			},
 			'map': {
