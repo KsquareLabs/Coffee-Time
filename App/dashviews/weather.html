@@ -1,22 +1,9 @@
-
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" rel="text/javascript"></script> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script type="text/javascript" src="index.js"></script>
-    <link rel="stylesheet" href="index.css" /> -->
         <div ng-controller='weatherCtrl as vm' class='text-center'>
             <div id="home" ng-hide="vm.home">
                 <nav class="navbar navbar-brand " id="nav" ng-style="vm.weatherBackground">
                     <a href="#home" <i style=" float: left;  color:white;" class="fa fa-sun-o fa-3x" aria-hidden="true"></i>
                     </a>
                     <p id="text"> <strong>Today ({{vm.date | date:'EEE M/d/yyyy'}}) </strong>
-                        <!-- <a href="#second" data-toggle="tooltip" data-placement="left" title="Next!" ng-click="vm.next()"> <i style=" float: right;  color:black;" class="fa fa-arrow-right" aria-hidden="true"></i>
-
-                        </a> -->
                     </p>
                     <div id="button" class="btn-group-vertical weatherParent" >
                         <li class="btn  btn-responsive eachData1" > <strong>City - {{vm.name | uppercase}} , {{vm.country | uppercase}} </strong></li>
@@ -31,8 +18,6 @@
                 </nav>
 
             </div>
-        <!-- </div> -->
-        <!-- <div ng-controller='weatherForCtrl as vm'> -->
             <div id="second" ng-show="vm.second">
                 <nav class="navbar navbar-brand " id="nav" ng-style="vm.weatherBackground">
                     <a href="#home" data-toggle="tooltip" data-placement="left" title="Go back!" ng-click="vm.back()"> <i style=" float: left;  color:black;" class="fa fa-arrow-left" aria-hidden="true"></i>
